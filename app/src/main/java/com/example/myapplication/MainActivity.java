@@ -21,7 +21,12 @@ public class MainActivity extends AppCompatActivity {
        listViewTools.setOnItemClickListener(new AdapterView.OnItemClickListener() {
            @Override
            public void onItemClick(android.widget.AdapterView<?> parent, View view, int position, long id) {
- 
+            switch (position){
+                case 0:
+                    Intent intent = new Intent(getApplicationContext(), DrillCategoryActivity.class);
+                    startActivity(intent);
+                    break;
+            }
            }
        });
     }

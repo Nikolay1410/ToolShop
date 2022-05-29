@@ -2,7 +2,10 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -24,5 +27,16 @@ public class DrillCategoryActivity extends AppCompatActivity {
         listViewDrills = findViewById(R.id.listViewDrills);
         ArrayAdapter<Drill> adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1, drills);
         listViewDrills.setAdapter(adapter);
+        listViewDrills.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Drill drill = drills.get(position);
+                Intent intent = new Intent(getApplicationContext(), DrillDetailActivity.class);
+                intent.putExtra("title", drill.getTitle());
+                intent.putExtra("info", drill.getInfo());
+                intent.putExtra("resId", drill.getImageResourceId());
+                startActivity(intent);
+            }
+        });
     }
 }
